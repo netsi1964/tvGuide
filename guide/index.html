@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--[if lte IE 9]>
+  <html class="ie" lang="en">
+  <![endif]-->
+  <!--[if gt IE 9]>
+    <!-->
+    <html lang="da">
+    <!--<![endif]-->
+    <head>
+      <meta charset="UTF-8">
+      <title>
+        TV guide
+      </title>
+      <link href="css/cyborg_bootstrap.min.css" media="all" rel="stylesheet" type="text/css"
+      />
+      <link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
+      <!-- <link href="http://assets.codepen.io/assets/editor/editor-04b88a9ecd42faff77c72fc52f36648b.css"
+      media="all" rel="stylesheet" type="text/css" />
+      -->
+      <meta name="description" content="TV guide">
+      <!-- <link href="http://assets.codepen.io/assets/editor/themes/classic-51bec036dca3c6720daffa98722b0ce6.css"
+      id="cm-theme" media="screen" rel="stylesheet" type="text/css" />
+      <link href="http://assets.codepen.io/assets/editor/layouts/top-f8a6edbfe23c01869b6c3209552d1788.css"
+      media="screen" rel="stylesheet" type="text/css" />
+      -->
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="@CodePen">
+      <meta name="twitter:title" content="What is on TV?">
+      <meta name="twitter:description" content="TV guide">
+      <meta name="twitter:image" content="http://cache.ysimag.es/pics/107740523/950x535.jpg">
+      <meta property="og:image" content="http://cache.ysimag.es/pics/107740523/950x535.jpg"
+      itemprop="thumbnailUrl">
+      <meta property="og:title" content="TV guide">
+      <meta property="og:url" content="http://guide.netsi.dk">
+      <meta property="og:site_name" content="Netsi">
+      <link rel="shortcut icon" href="favicon.ico">
+      <script type="text/javascript">
+      var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-46278674-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script');
+  ga.type = 'text/javascript';
+  ga.async = true;
+
+  ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(ga, s);
+})();
+      </script>
+    </head>
+    <body data-ng-app ng-controller="FetchCtrl">
+      <div class="full">
+        <div class="container add">
+          <div class="container">
+            <!-- AD START -->
+            <div class="row ad">
+              <div class="col-md-12">
+                <style>
+                  .guidenetsidk { width: 320px; height: 50px; } @media(min-width: 500px) { .guidenetsidk
+                  { width: 468px; height: 60px; } } @media(min-width: 800px) { .guidenetsidk { width:
+                  728px; height: 90px; } }
+                </style>
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+                                                              
+                </script>
+                <!-- guide.netsi.dk -->
+                <ins class="adsbygoogle guidenetsidk" style="display:inline-block" data-ad-client="ca-pub-1375261449413843"
+                data-ad-slot="1060249876">
+                </ins>
+                <script>
+                                                              (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+              </div>
+            </div>
+            <!-- AD STOP -->
+            <div class="row">
+              <div style="display: none">
+                <button ng-click="fetch()">
+                  fetch
+                </button>
+                <br>
+                <pre>
+                  http status code: {{status}}
+                </pre>
+                <pre>
+                  http response data: {{data.now}}
+                </pre>
+              </div>
+              <div class="col-md-4 col-sm-4">
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-search">
+                      Filter
+                    </button>
+                  </span>
+                  <input class="col-md-4 col-sm-2 form-control" id="prependedInput" ng-model="search"
+                  type="text" placeholder="Filtrere efter hvad du taster ind">
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-4">
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-search">
+                      Antal programmer
+                    </button>
+                  </span>
+                  <div class="col-md-4  col-sm-2 form-control">
+                    {{(data.now | filter:search).length}}
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-3">
+                <select class="form-control" ng-model="predicate">
+                  <option value="">Sæt sortering</option>
+                  <option value="channel">Kanal</option>
+                  <option value="channel_info.name">Program</option>
+                  <option value="formatted_date.time_begin">Tid tilbage</option>
+                  <option value="formatted_date.time_end">Slutter</option>
+                  <option value="description">Beskrivelse</option>
+                </select>
+                
+              </div>
+              <div class="col-md-1"><input type="checkbox" ng-model="reverse" class="form-control col-md-1" /></div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container main">
+        <div class="channels table container">
+          <div class="row hidden-xs hidden-sm">
+            <div class="col-md-1" ng-click="setSort('channel');">
+              Kanal
+            </div>
+            <div class="col-md-3" ng-click="setSort('channel_info.name')">
+              Program
+            </div>
+            <div class="col-md-3" ng-click="setSort('formatted_date.time_begin')">
+              Tid tilbage
+            </div>
+            <div class="col-md-1" ng-click="setSort('formatted_date.time_end')">
+              Slutter
+            </div>
+            <div class="col-md-4" ng-click="setSort('description')">
+              Beskrivelse
+            </div>
+          </div>
+          <div class="row">
+            <div colcol-md-="5" class="col-md-12 filler">
+            </div>
+          </div>
+          <div ng-repeat="prg in data.now | filter:search | orderBy:predicate:reverse" class="channel row"
+          data-channel="{{prg.channel}}">
+            <div class="logo col-md-4">
+              <div class="container">
+                <div class="col-md-1">
+                  <img ng-src="{{prg.channel_info.logo_image_prefix}}{{prg.channel_info.logos.svg}}"
+                  alt="{{prg.channel_info.name}}" title="{{prg.channel_info.name}}" />
+                </div>
+                <div class="title col-md-3">
+                  <a href="{{prg.imageprefix}}{{prg.images_sixteenbynine.large}}" target="_blank"><img ng-src="{{prg.imageprefix}}{{prg.images_sixteenbynine.small}}" title="Programmet ”{{prg.title}}“ p&aring; {{prg.channel_info.name}}, slutter kl. {{prg.formatted_date.time_end}}" alt="Programmet ”{{prg.title}}“ p&aring; {{prg.channel_info.name}}, slutter kl. {{prg.formatted_date.time_end}}" class="img-polaroid" /></a>
+                  <h5>
+                    {{prg.title}}
+                  </h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="progress" title="Started at {{prg.formatted_date.time_begin}} ending at {{prg.formatted_date.time_end}}">
+                <div class="bar" style="width: {{progress(prg.formatted_date.time_begin, prg.formatted_date.time_end)}}%;">
+                </div>
+              </div>
+              <!-- <a href="http://yousee.tv/livetv/{{prg.channel_info.name}}" class="btn btn-small
+              btn-primary" target="_parent">Watch {{prg.channel_info.name}}</a> -->
+              <div class="next">
+              </div>
+            </div>
+            <div class="col-md-1">
+              {{prg.formatted_date.time_end}}
+            </div>
+            <div class="col-md-4" ng-bind="prg.description">
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="http://code.angularjs.org/1.2.0-rc.3/angular.js">
+                        
+      </script>
+      <script src="https://code.jquery.com/jquery.js">
+                        
+      </script>
+      <script src="js/prefixfree.min.js">
+                        
+      </script>
+      <script src="js/bootstrap.min.js">
+                        
+      </script>
+      <script src="js/script.js">
+                        
+      </script>
+    </body>
+    
+    </html>

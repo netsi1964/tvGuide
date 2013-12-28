@@ -1,0 +1,57 @@
+/* Styles go here */
+body {
+  padding-top: 150px;
+  font-family: arial;
+}
+.add {
+  position: fixed !Important;
+  z-index: 10;
+  top: 0px;
+left: 50%;
+margin-left:-45%;
+background: black;
+}
+
+.full {
+background: #000;
+width: 100%;
+height: 130px;
+position: fixed;
+top: 0px;
+z-index: 9;
+}
+.channel .logo img {
+  width: 90%;
+}
+.progress {
+  background-color: green;
+}
+.progress .bar {
+  background-color: #808080;
+  background-image: none;
+  outline: solid 1px white;
+  height: 100%;
+}
+.logo {
+
+}
+
+.main .row:nth-child(2n) {
+background-color: #4E4E4E;
+margin-bottom: 1em;
+padding: 5px 0px;
+}
+
+.resources {
+ list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+.resources li {
+  display: inline-block;
+  margin: 0px 5px 0px 0px;
+}
+
+h5 {
+  color: #808080;
+}
