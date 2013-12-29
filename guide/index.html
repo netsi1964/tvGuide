@@ -140,15 +140,12 @@ _gaq.push(['_trackPageview']);
             <div class="col-md-3" ng-click="setSort('formatted_date.time_begin')">
               Tid tilbage
             </div>
-            <div class="col-md-1" ng-click="setSort('formatted_date.time_end')">
-              Slutter
-            </div>
-            <div class="col-md-4" ng-click="setSort('description')">
+            <div class="col-md-5" ng-click="setSort('description')">
               Beskrivelse
             </div>
           </div>
           <div class="row">
-            <div colcol-md-="5" class="col-md-12 filler">
+            <div class="col-md-12 filler">
             </div>
           </div>
           <div ng-repeat="prg in data.now | filter:search | orderBy:predicate:reverse" class="channel row"
@@ -156,11 +153,13 @@ _gaq.push(['_trackPageview']);
             <div class="logo col-md-4">
               <div class="container">
                 <div class="col-md-1">
-                  <img ng-src="{{prg.channel_info.logo_image_prefix}}{{prg.channel_info.logos.svg}}"
-                  alt="{{prg.channel_info.name}}" title="{{prg.channel_info.name}}" />
+                  <!-- <img ng-src="{{prg.channel_info.logo_image_prefix}}{{prg.channel_info.logos.svg}}"
+                  alt="{{prg.channel_info.name}}" title="{{prg.channel_info.name}}" class="hidden-xs hidden-sm" /> -->
+                  <h4 class="rotate">{{prg.channel_info.name}}</h4>
                 </div>
+
                 <div class="title col-md-3">
-                  <a href="{{prg.imageprefix}}{{prg.images_sixteenbynine.large}}" target="_blank"><img ng-src="{{prg.imageprefix}}{{prg.images_sixteenbynine.small}}" title="Programmet ”{{prg.title}}“ p&aring; {{prg.channel_info.name}}, slutter kl. {{prg.formatted_date.time_end}}" alt="Programmet ”{{prg.title}}“ p&aring; {{prg.channel_info.name}}, slutter kl. {{prg.formatted_date.time_end}}" class="img-polaroid" /></a>
+                  <a href="{{prg.imageprefix}}{{prg.images_sixteenbynine.large}}" target="_blank" class=""><img ng-src="{{prg.imageprefix}}{{prg.images_sixteenbynine.small}}" title="Programmet ”{{prg.title}}“ p&aring; {{prg.channel_info.name}}, slutter kl. {{prg.formatted_date.time_end}}" alt="Programmet ”{{prg.title}}“ p&aring; {{prg.channel_info.name}}, slutter kl. {{prg.formatted_date.time_end}}" class="img-polaroid" /></a>
                   <h5>
                     {{prg.title}}
                   </h5>
@@ -168,7 +167,7 @@ _gaq.push(['_trackPageview']);
               </div>
             </div>
             <div class="col-md-3">
-              <div class="progress" title="Started at {{prg.formatted_date.time_begin}} ending at {{prg.formatted_date.time_end}}">
+              <div class="progress" data-begin="{{prg.formatted_date.time_begin}}" data-end="{{prg.formatted_date.time_end}}" title="Started at {{prg.formatted_date.time_begin}} ending at {{prg.formatted_date.time_end}}">
                 <div class="bar" style="width: {{progress(prg.formatted_date.time_begin, prg.formatted_date.time_end)}}%;">
                 </div>
               </div>
@@ -177,15 +176,18 @@ _gaq.push(['_trackPageview']);
               <div class="next">
               </div>
             </div>
-            <div class="col-md-1">
+            <!-- <div class="col-md-1">
               {{prg.formatted_date.time_end}}
-            </div>
-            <div class="col-md-4" ng-bind="prg.description">
+            </div> -->
+            <div class="col-md-5" ng-bind="prg.description">
             </div>
           </div>
         </div>
       </div>
       <script src="http://code.angularjs.org/1.2.0-rc.3/angular.js">
+                        
+      </script>
+      <script src="js/angular-local-storage.js">
                         
       </script>
       <script src="https://code.jquery.com/jquery.js">
@@ -197,6 +199,7 @@ _gaq.push(['_trackPageview']);
       <script src="js/bootstrap.min.js">
                         
       </script>
+
       <script src="js/script.js">
                         
       </script>

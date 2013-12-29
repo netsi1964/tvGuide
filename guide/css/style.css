@@ -55,3 +55,54 @@ padding: 5px 0px;
 h5 {
   color: #808080;
 }
+
+/* EPG */
+.epg {}
+.epg .start {
+  padding-right: 10px;
+}
+.epg tr:nth-child(2n) {
+background-color: #4E4E4E;
+}
+
+
+.desc > div:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}
+
+/*.rotate {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+
+  /* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+
+  /* Should be unset in IE9+ I think. */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}*/
+
+.progress:before {
+content: attr(data-begin);
+color: #FFF;
+position: relative;
+z-index: 10;
+font-size: smaller;
+left: 5px;
+}
+
+.progress:after {
+content: attr(data-end);
+color: #FF0;
+position: absolute;
+top: 0px;
+right: 20px;
+}
