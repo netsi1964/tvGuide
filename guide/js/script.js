@@ -88,7 +88,7 @@ function FetchCtrl($scope, $http, $templateCache) {
         window.open('http://yousee.tv/livetv/' + schannel + '/');
     }
 
-    $scope.isCat = function() {
+    $scope.isHit = function() {
         var bHit = true;
         if (bHit) {
             bHit =  (typeof $scope.cat==='undefined' || $scope.cat=='') ? true : arguments[0].category_string+' - '+arguments[0].subcategory_string===$scope.cat;

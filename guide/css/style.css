@@ -23,6 +23,9 @@ z-index: 9;
 .channel .logo img {
   width: 90%;
 }
+.channel [class^="col-"] {
+  min-height: 9em;
+}
 .progress {
   background-color: green;
 }
@@ -103,6 +106,23 @@ left: 5px;
 content: attr(data-end);
 color: #FF0;
 position: absolute;
-top: 0px;
+margin-top: -1.4em;
 right: 20px;
+}
+
+.guidenetsidk {
+    width: 320px;
+    height: 50px;
+}
+@media(min-width: 500px) {
+    .guidenetsidk {
+        width: 468px;
+        height: 60px;
+    }
+}
+@media(min-width: 800px) {
+    .guidenetsidk {
+        width: 728px;
+        height: 90px;
+    }
 }
